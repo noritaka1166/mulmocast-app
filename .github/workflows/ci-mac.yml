@@ -11,7 +11,10 @@ on:
       - release/*
     tags:
       - 'v*'
-  
+
+permissions:
+  contents: read
+
 jobs:
   build-and-release:
     # 実行環境：最新のmacOS
@@ -27,6 +30,8 @@ jobs:
       # ワークフローを実行する仮想環境に、リポジトリのコードをコピーしてくる
       - name: Checkout code
         uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       # 2. Node.js環境のセットアップ
       # アプリのビルドに必要なNode.jsとYarnを準備する
