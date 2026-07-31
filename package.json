@@ -29,7 +29,8 @@
     "type-check:main": "tsc --noEmit -p ./tsconfig.main.json",
     "type-check:renderer": "tsc --noEmit -p ./tsconfig.renderer.json",
     "i18n:check": "npx tsx scripts/check-i18n.ts",
-    "i18n:translate": "npx tsx scripts/translate-i18n.ts"
+    "i18n:translate": "npx tsx scripts/translate-i18n.ts",
+    "knip": "knip"
   },
   "keywords": [],
   "author": {
@@ -73,6 +74,7 @@
     "eslint-plugin-vue": "^10.10.0",
     "globals": "^17.8.0",
     "jsonc-eslint-parser": "^3.1.0",
+    "knip": "^6",
     "playwright": "^1.62.1",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
