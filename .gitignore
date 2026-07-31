@@ -115,6 +115,9 @@ docs/release_notes/*/images/*.gif
 # i18n
 .i18n-cache/
 
+# jscpd duplication-scan output (see .github/workflows/duplication-scan.yaml)
+report/
+
 # Local OEM branding files
 branding/*.json
 branding/*.ts

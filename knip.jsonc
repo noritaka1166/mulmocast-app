@@ -1,0 +1,45 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  // Electron-forge app: the main/preload process entry points are declared in forge.config.ts
+  // (which knip does not parse), so they are listed here explicitly. The renderer entry
+  // (src/renderer/main.ts via index.html) and vite.renderer.config.ts are auto-detected, so
+  // they are NOT listed (listing them triggers a "redundant entry" hint). vite.main/preload
+  // config plus the scripts/batch/test directories are standalone entry points (run via tsx /
+  // electron-forge), not analyzed library source.
+  "entry": [
+    "src/main/main.ts",
+    "src/preload/preload.ts",
+    "forge.config.ts",
+    "vite.main.config.ts",
+    "vite.preload.config.ts",
+    "scripts/**/*.ts",
+    "batch/**/*.ts",
+    "test/**/*.ts"
+  ],
+  "project": ["src/**/*.{ts,vue}"],
+  "ignoreExportsUsedInFile": true,
+  "includeEntryExports": false,
+  // Only dependencies knip structurally cannot see, each with the invisible usage named:
+  "ignoreDependencies": [
+    // `@import`ed in src/renderer/style.css; knip does not follow CSS imports into node_modules.
+    "tailwindcss",
+    "tw-animate-css",
+    // Referenced by string name (not an import) in forge.config.ts publishers.
+    "@electron-forge/publisher-s3",
+  ],
+  "rules": {
+    // Warn mode: every rule is "warn" (reported, exit 0) or "off". Nothing gates CI here.
+    "files": "warn",
+    "dependencies": "warn",
+    "devDependencies": "warn",
+    "unlisted": "warn",
+    "exports": "warn",
+    "types": "warn",
+    "unresolved": "off",
+    "binaries": "off",
+    "nsExports": "off",
+    "nsTypes": "off",
+    "enumMembers": "off",
+    "duplicates": "off",
+  },
+}
